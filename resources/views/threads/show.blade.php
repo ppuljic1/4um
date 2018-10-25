@@ -33,5 +33,27 @@
 
         </div>
     </div>
+
+    <!-- Reply Form -->
+    @if( auth()->check() )    
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form method="POST" action="{{ $thread->path() . '/replies' }}">
+                    {{ csrf_field() }}
+                
+                    <div class="form-group">
+                      <textarea class="form-control" name="body" id="body" rows="5" placeholder="Got something to say?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+
+            </div>
+        </div>
+    @else 
+        <p class="text-center">You need to <a href="{{ route('login') }}">Sign in</a> to participate</p>
+    @endif
+
 </div>
 @endsection

@@ -3,19 +3,16 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReadThreadsTest extends TestCase
 {
-
-    use RefreshDatabase;
 
     public function setUp() 
     {
         parent::setUp();
 
         // Create a thread
-        $this->thread = factory('App\Thread')->create();
+        $this->thread = create('App\Thread');
     }
 
     /** @test */
@@ -40,8 +37,7 @@ class ReadThreadsTest extends TestCase
     public function a_user_can_read_replies_that_are_associated_with_a_thread() 
     {
         // Create the reply
-        $reply = factory('App\Reply')
-            ->create(['thread_id' => $this->thread->id]);
+        $reply = create('App\Reply', ['thread_id' => $this->thread->id]);
 
         // When we wisit a thread page we should see the replies
         $this->get($this->thread->path())
