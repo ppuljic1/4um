@@ -19,7 +19,7 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Thread');
 
         // User adds a reply to the thread
-        $reply = create('App\Reply');
+        $reply = make('App\Reply');
         $this->post($thread->path() . '/replies', $reply->toArray());
 
         // Reply should be visible on the page
@@ -27,4 +27,21 @@ class ParticipateInForumTest extends TestCase
             ->assertSee($reply->body);
 
     }
+
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        // Create user and Authenticate user
+        $this->withExceptionHandling()->signIn();
+
+        // Thread
+        $thread = create('App\Thread');
+
+        // User adds a reply to the thread
+        $reply = make('App\Reply', ['body'=>null]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertSessionHasErrors('body');
+
+    } 
 }
