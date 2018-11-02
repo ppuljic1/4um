@@ -11,19 +11,34 @@
 |
 */
 
+// Welcome window
 Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Authentification controller
 Auth::routes();
 
+// Home controller
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Threads Controller
+// Route::resource('threads', 'ThreadsController');
+Route::get('/threads', 'ThreadsController@index');
+Route::post('/threads', 'ThreadsController@store');
+Route::get('/threads/create', 'ThreadsController@create');
+Route::get('/threads/{channel}', 'ThreadsController@index');
+Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+
+// Replies controller
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
 
-// Route::resource('threads', 'ThreadsController');
-Route::post('/threads', 'ThreadsController@store');
-Route::get('/threads', 'ThreadsController@index');
-Route::get('/threads/create', 'ThreadsController@create');
-Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
+
+
+
+
+
+
+
+
+

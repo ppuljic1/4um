@@ -34,6 +34,22 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <a class="nav-link" href="/threads">All threads</a>
+                        <li class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Channels
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach(App\Channel::all() as $channel)
+                                    <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <!-- <li class="nav">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                
+                            </ul>
+                        </li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->

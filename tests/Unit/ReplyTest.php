@@ -8,9 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReplyTest extends TestCase
 {
-    use RefreshDatabase;
-
-
     
     /** @test */
     public function it_has_an_owner() 

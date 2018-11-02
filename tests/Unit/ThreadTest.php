@@ -10,8 +10,6 @@ class ThreadTest extends TestCase
 {
     protected $thread;
 
-    use RefreshDatabase;
-
     public function setUp() 
     {
         parent::setUp();
