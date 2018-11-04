@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Filters\ThreadFilters;
 
 class Thread extends Model
 {
@@ -39,5 +40,10 @@ class Thread extends Model
 
         return $this->belongsTo(Channel::class);
         
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
     }
 }

@@ -23,26 +23,51 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <a class="nav-link" href="/threads">All threads</a>
+
+                        <li class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Browse
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="/threads">All threads</a></li>
+                                @if(Auth::check())
+                                    <li><a href="/threads?by={{ auth()->user()->name }}">My threads</a></li>
+                                @endif
+                            </ul>
+                        </li>
+                        
+
+                        @if(Auth::check())
+                            <a class="nav-link" href="/threads/create">New thread</a>
+                        @endif
+
                         <li class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Channels
                                 <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu">
-                                @foreach(App\Channel::all() as $channel)
+
+                                @foreach($channels as $channel)
                                     <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                                 @endforeach
+
                             </ul>
                         </li>
                         <!-- <li class="nav">
