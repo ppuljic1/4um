@@ -10,7 +10,7 @@ class ThreadFilters extends Filters
      * Thread filters array
      * @var Filters
      */
-    protected $filters = ['by'];
+    protected $filters = ['by', 'popularity'];
 
     
     /**
@@ -26,6 +26,15 @@ class ThreadFilters extends Filters
     
         return $this->builder->where('user_id', $user->id);
 
+    }
+
+    /**
+     * Filter the query by popularity(number of comments)
+     * @return mixed
+     */
+    public function popularity()
+    {
+        return $this->builder->orederBy('replies_count', 'desc');
     }
 
 }
