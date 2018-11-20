@@ -63,6 +63,7 @@
                                 @if(Auth::check())
                                     <li><a href="/threads?by={{ auth()->user()->name }}">My threads</a></li>
                                 @endif
+                                <li><a href="/threads?popularity=1">Popular Threads</a></li>
                             </ul>
                         </li>
                         

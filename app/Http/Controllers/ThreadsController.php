@@ -124,7 +124,7 @@ class ThreadsController extends Controller
      * @param \App\Filters\ThreadFilters $filters
      * @return \App\Thread               
      */
-    public function getThreads($channel, $filters)
+    public function getThreads(Channel $channel, $filters)
     {
         $threads = Thread::latest()->filter($filters);
 

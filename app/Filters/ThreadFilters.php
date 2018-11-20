@@ -34,7 +34,7 @@ class ThreadFilters extends Filters
      */
     public function popularity()
     {
-        return $this->builder->orederBy('replies_count', 'desc');
+        return $this->builder->orderBy('replies_count', 'desc');
     }
 
 }
